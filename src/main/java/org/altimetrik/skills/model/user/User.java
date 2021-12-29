@@ -34,6 +34,4 @@ public class User extends ReactivePanacheMongoEntityBase {
 
   private List<SkillDocument> skillDocuments;
 
-  // TODO: Project project - project id
-
 }

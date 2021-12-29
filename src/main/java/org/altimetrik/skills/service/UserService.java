@@ -68,9 +68,7 @@ public class UserService {
 
   private Uni<List<SkillDocument>> mapRequestToSkillsList(
       Optional<List<UserSkillRequestDto>> userSkillRequestDto) {
-    return skillService.findAllList(
-            userSkillRequestDto.stream().flatMap(Collection::stream)
-                .map(UserSkillRequestDto::getSkillId).toList())
+    return skillService.findAllList()
         .map(skills -> userSkillRequestDto.stream().flatMap(Collection::stream)
             .filter(userSkill -> skills.stream()
                 .anyMatch(skill -> skill.getId().toString().equals(userSkill.getSkillId())))

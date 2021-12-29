@@ -1,7 +1,6 @@
 package org.altimetrik.skills;
 
 import io.quarkus.test.junit.QuarkusTest;
-import javax.inject.Inject;
 import org.altimetrik.skills.repository.SkillRepository;
 import org.altimetrik.skills.repository.TagRepository;
 import org.altimetrik.skills.repository.UserRepository;
@@ -11,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @QuarkusTest
 public class ApplicationBaseFT {
 
-  @Inject
+  @Autowired
   protected UserRepository userRepository;
 
   @Autowired
