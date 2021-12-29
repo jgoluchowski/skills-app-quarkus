@@ -7,13 +7,8 @@ on:
     branches: [ develop, feature/** ]
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-20.04
+  tests:
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 17
@@ -26,12 +21,8 @@ jobs:
         run: mvn test
 
   docker:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-20.04
+    needs: tests
+    runs-on: ubuntu-20.04
     steps:
       - name: Build docker image
         id: docker_build
