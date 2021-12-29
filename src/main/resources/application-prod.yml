@@ -1,0 +1,3 @@
+quarkus:
+  mongodb:
+    connection-string: mongodb://mongodb-service:27017

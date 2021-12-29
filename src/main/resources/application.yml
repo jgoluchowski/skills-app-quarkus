@@ -1,0 +1,42 @@
+quarkus:
+  swagger-ui:
+    always-include: true
+  jaeger:
+    service-name: skills-app
+    sampler-type: const
+    sampler-param: 1
+  mongodb:
+    database: skills
+  oidc:
+    auth-server-url: https://lemur-8.cloud-iam.com/auth/realms/skills-app
+    application-type: SERVICE
+    roles:
+      role-claim-path: "realm_access/roles"
+      role-claim-separator: ","
+  http:
+    auth:
+      permission:
+        allowed:
+          paths: /q/*
+          policy: permit
+        authenticated:
+          paths: /*
+          policy: authenticated
+  kubernetes:
+    service-type: nodePort
+    node-port: 30082
+    image-pull-policy: Never
+    env:
+      vars:
+        QUARKUS_PROFILE: dev
+    resources:
+      requests:
+        memory: 64Mi
+        cpu: 250m
+      limits:
+        memory: 512Mi
+        cpu: 1000m
+  container-image:
+    group: altimetrik
+    name: skills-quarkus-native
+    tag: latest

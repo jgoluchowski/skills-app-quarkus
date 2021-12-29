@@ -1,0 +1,5 @@
+quarkus:
+  mongodb:
+    connection-string: mongodb://localhost:30017
+  log:
+    level: TRACE
